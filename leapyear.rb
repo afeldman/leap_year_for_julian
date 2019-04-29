@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby 
 
-n=ARGV[0]
-y=n.to_i || 0
 
 # in the julian calender has each 4 year a leap year. 
 # to test in a computer if a number is a multiple of 
@@ -11,9 +9,20 @@ y=n.to_i || 0
 # then that year is no leap year.
 # for a computer it is easy to check for multiple of 128.
 # check if the last 7 bits are 0
+def leap_year (year)
+    if (year & 127) != 0 && (year & 3) == 0  
+        return true 
+    else  
+        return false
+    end
+end
 
-if (y & 127) != 0 && (y & 3) == 0  
-    puts "leap year" 
-else  
-    puts "not leap year"
+if __FILE__==$0
+    n=ARGV[0]
+    y=n.to_i || 0
+    if leap_year(y)
+        puts 'leap year'
+    else
+        puts 'no leap year'
+    end
 end
